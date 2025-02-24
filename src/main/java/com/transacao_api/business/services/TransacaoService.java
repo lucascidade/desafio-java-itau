@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,10 +30,21 @@ public class TransacaoService {
         }
 
         listaTransacoes.add(transacaoRequestDTO);
+        log.info("transação {} adicionada: sucesso", transacaoRequestDTO);
     }
 
     public void limparTransacoes() {
-        log.info("inicio limparTransacoes");
+        log.info("iniciando limpeza de transações ...");
         listaTransacoes.clear();
+        log.info("limpeza de transações: sucesso");
+    }
+
+    public List<TransacaoRequestDTO>  buscarTransacoes(Integer intervaloBusca){
+        OffsetDateTime dataHoraIntervalo = OffsetDateTime.now().minusSeconds(intervaloBusca);
+
+        return listaTransacoes.stream()
+                .filter(transacao -> transacao.dataHora()
+                        .isAfter(dataHoraIntervalo))
+                .collect(Collectors.toList());
     }
 }
