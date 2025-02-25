@@ -75,7 +75,7 @@ docker run -p 8080:8080 api-transacoes
 
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
-| `intervaloSegundos` | `integer` | **Não Obrigatório.**  O padrão default é 60s  |
+| `intervaloBusca` | `integer` | **Não Obrigatório.**  O padrão default é 60s  |
 
 
 
