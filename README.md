@@ -22,16 +22,26 @@ Docker (opcional): Caso queira rodar a aplicação em um container.
 
 1. Clone o Repositório
 
-2. Compile o Projeto
+```bash
+git clone https://github.com/lucascidade/desafio-java-itau.git
+
+```
+
+2. Baixe as dependências
+Caso não tenha o Gradle instalado no seu sistema, use o wrapper (certifique que está dentro da pasta clonada):
+```bash
+./gradlew build
+
+```
+Caso tenha o Gradle no seu sistema
 
 ```bash
- mvn clean install
+gradle build
 ```
 
 3. Execute o Projeto
-
 ```bash
-mvn spring-boot:run
+./gradlew bootRun
 ```
 4. Como Rodar em um Container (Opcional)
 
@@ -61,21 +71,22 @@ docker run -p 8080:8080 api-transacoes
 | `valor` | `BigDecimal` | **Obrigatório.** O valor da transação 
 | `dataHora` | `OffsetDateTime` | **Obrigatório.**  O horário que a transação ocorreu
 
-#### Limpar Transações
-
-```http
-  DELETE /transacao
-```
 
 #### Calcular Estatísticas
 
 ```http
   GET /estatistica
 ```
-
 | Parâmetro   | Tipo       | Descrição                                   |
 | :---------- | :--------- | :------------------------------------------ |
 | `intervaloBusca` | `integer` | **Não Obrigatório.**  O padrão default é 60s  |
+
+#### Limpar Transações
+
+```http
+  DELETE /transacao
+```
+
 
 
 
